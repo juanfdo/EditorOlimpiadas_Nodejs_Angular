@@ -1,0 +1,22 @@
+.odd {
+	background-color: #f2f9ff;
+  border-radius: 0.25em;
+  margin: 0.25em;
+}
+.even {
+	background-color: #eceff3;
+  border-radius: 0.25em;
+  margin: 0.25em;
+}
+
+.borde {
+  border-color: rgb(42, 29, 77);
+  border: 1px solid;
+  padding: 10px;
+  /*box-shadow: 0.25em 0.25em #313e75;*/
+  box-shadow: 0.25em 0.25em 0.25em rgba(0, 0, 255, .2);
+  border-radius: 0.5em;
+    background: rgb(161, 201, 240);
+    padding: 20px;  
+    margin: 0.25em;
+}
