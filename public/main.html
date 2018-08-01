@@ -30,7 +30,7 @@
           <label>Id:</label>
           <textarea disabled class="form-control" maxlength="200" rows="1"> {{nuevaPregunta.intId}}</textarea>
           <input class="form-control btn submit-btn pull-right" type="submit" value="Guardar" />
-          <div class="form-control btn submit-btn pull-right" value="Limpiar" ng-click="limpiar()">limbiar</div>
+          <div class="form-control btn submit-btn pull-right" value="Limpiar" ng-click="limpiar()">Limpiar</div>
         </div>
       </form>
     </div>
@@ -66,10 +66,12 @@
   -->
 
   <div class="col col-xs-12 borde" id="accordion">
-    <div class="card" ng-repeat="obj in preguntas | orderBy:'intId':true" ng-class-odd="'odd'" ng-class-even="'even'">
+    <div class="card" ng-repeat="obj in preguntas | orderBy:'intId'" ng-class-odd="'odd'" ng-class-even="'even'">
       <div class="row">
         <div class="col col-xs-6 col-sm-6 col-md-6">Categoria: {{obj.intIdCategoria}}</div>
         <div class="col col-xs-6 col-sm-6 col-md-6">Olimpiada: {{obj.intIdOlimpiada}}</div>
+      </div>
+      <div class="row">
         <div class="col col-xs-12 col-sm-12 ">Pregunta: {{obj.txtPregunta}}</div>
       </div>
       <div class="card-header" id="heading{{obj.intId}}">
@@ -82,17 +84,26 @@
       </div>
       <div id="collapse{{obj.intId}}" class="collapse" aria-labelledby="heading{{obj.intId}}" data-parent="#accordion">
         <div class="card-body">
-          <div style="font-weight: bold">Ecuacion:     </div><div> {{obj.txtEcuaciones}} </div>
-          <div style="font-weight: bold">Otro:         </div><div> {{obj.txtOtros}}      </div>
-          <div style="font-weight: bold">Video:        </div><div> {{obj.txtVideo}}      </div>
-          <div style="font-weight: bold">RespuestaOK:  </div><div> {{obj.txtCorrecta}}   </div>
-          <div style="font-weight: bold">RespuestaErr: </div><div> {{obj.txtRespuesta1}} </div>
-          <div style="font-weight: bold">RespuestaErr: </div><div> {{obj.txtRespuesta2}} </div>
-          <div style="font-weight: bold">RespuestaErr: </div><div> {{obj.txtRespuesta3}} </div>
+          <div style="font-weight: bold">Ecuacion: </div>
+          <div> {{obj.txtEcuaciones}} </div>
+          <div style="font-weight: bold">Otro: </div>
+          <div> {{obj.txtOtros}} </div>
+          <div style="font-weight: bold">Video: </div>
+          <div> {{obj.txtVideo}} </div>
+          <div style="font-weight: bold">RespuestaOK: </div>
+          <div> {{obj.txtCorrecta}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta1}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta2}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta3}} </div>
         </div>
       </div>
-      <div class="col col-xs-12 col-sm-6 col-md-3">
-        <small>Id: {{obj.intId}}</small>
+      <div class="row">
+        <div class="col col-xs-12 col-sm-6 col-md-3">
+          <small>Id: {{obj.intId}}</small>
+        </div>
       </div>
     </div>
   </div>
