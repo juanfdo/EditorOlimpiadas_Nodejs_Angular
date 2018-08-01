@@ -1,16 +1,17 @@
-<div class="row" style="padding: 10px;">
+<div style="padding: 10px;">
 
 
 
 
-  <div class="col col-md-12 borde">
-    <div class="row">
-      <form ng-submit="post()" class="col col-md-12">
-        <div class="col col-md-12">
+  <div class="col col-xs-12 borde">
+    <div class="col">
+      <!-- class="row"> -->
+      <form ng-submit="post()" class="col ">
+        <div class="col ">
           <div class="form-group">
-            <label>Language</label>
+            <label>Categoria</label>
             <select required class="form-control" ng-model="selectedCategoria" ng-options="y.txtNombre for (x, y) in categorias"></select>
-            <label>Language</label>
+            <label>Olimpiada</label>
             <select required class="form-control" ng-model="selectedOlimpiada" ng-options="y.txtNombre for (x, y) in olimpiadas"></select>
           </div>
 
@@ -19,7 +20,7 @@
           <label>Respuesta Correcta</label>
           <textarea required class="form-control" maxlength="200" rows="3" placeholder="Ingresar la pregunta aquí" ng-model="nuevaPregunta.txtCorrecta"></textarea>
         </div>
-        <div class="col col-md-12">
+        <div class="col ">
           <label>Respuesta Incorrecta</label>
           <textarea required class="form-control" maxlength="200" rows="3" placeholder="Ingresar la pregunta aquí" ng-model="nuevaPregunta.txtRespuesta1"></textarea>
           <label>Respuesta Incorrecta</label>
@@ -29,7 +30,7 @@
           <label>Id:</label>
           <textarea disabled class="form-control" maxlength="200" rows="1"> {{nuevaPregunta.intId}}</textarea>
           <input class="form-control btn submit-btn pull-right" type="submit" value="Guardar" />
-          <div class="form-control btn submit-btn pull-right" value="Limpiar" ng-click="limpiar()" >limbiar</div>
+          <div class="form-control btn submit-btn pull-right" value="Limpiar" ng-click="limpiar()">limbiar</div>
         </div>
       </form>
     </div>
@@ -40,7 +41,7 @@
 
 
 
-  <div class="col borde col-md-12">
+  <div class="col col-xs-12 borde ">
     <div>
       <div>
         <h1>Categorias</h1>
@@ -58,29 +59,45 @@
           <div class="col col-xs-12 col-sm-6 col-md-11">Nombre: {{obj.txtNombre}}</div>
         </div>
       </div>
+    </div>
+  </div>
+  <!--
+    --------------------------------------------------------------------------------------
+  -->
 
-      <h1>Preguntas</h1>
-      <div class="row" ng-repeat="obj in preguntas | orderBy:'intId':true" ng-class-odd="'odd'" ng-class-even="'even'">
-        <div class="col col-xs-12 col-sm-6 col-md-6">Cat: {{obj.intIdCategoria}}</div>
-        <div class="col col-xs-12 col-sm-6 col-md-6">Olimpiada: {{obj.intIdOlimpiada}}</div>
-        <div class="col col-xs-12 col-sm-12 col-md-12">Pregunta: {{obj.txtPregunta}}</div>
-
-        <!--
-      <div class="col-xs-12 col-sm-6 col-md-3"><small>Ecuacion: </small>{{obj.txtEcuaciones}}</div>
-      <div class="col-xs-12 col-sm-6 col-md-3"><small>Otro: </small>{{obj.txtOtros}}</div>
-      <div class="col-xs-12 col-sm-6 col-md-3"><small>Video: </small>{{obj.txtVideo}}</div>
-      <div class="col-xs-12 col-sm-6 col-md-3"><small>RespuestaOK: </small>{{obj.txtCorrecta}}</div>
-      <div class="col-xs-12 col-sm-6 col-md-3"><small>RespuestaErr: </small>{{obj.txtRespuesta1}}</div>
-      <div class="col-xs-12 col-sm-6 col-md-3"><small>RespuestaErr: </small>{{obj.xtRespuesta2}}</div>
-      <div class="col-xs-12 col-sm-6 col-md-3"><small>RespuestaErr: </small>{{obj.txtRespuesta3}}</div>
-      -->
-
-        <div class="col col-xs-12 col-sm-6 col-md-3">
-          <small>Id: </small>{{obj.intId}}</div>
+  <div class="col col-xs-12 borde" id="accordion">
+    <div class="card" ng-repeat="obj in preguntas | orderBy:'intId':true" ng-class-odd="'odd'" ng-class-even="'even'">
+      <div class="row">
+        <div class="col col-xs-6 col-sm-6 col-md-6">Categoria: {{obj.intIdCategoria}}</div>
+        <div class="col col-xs-6 col-sm-6 col-md-6">Olimpiada: {{obj.intIdOlimpiada}}</div>
+        <div class="col col-xs-12 col-sm-12 ">Pregunta: {{obj.txtPregunta}}</div>
+      </div>
+      <div class="card-header" id="heading{{obj.intId}}">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{obj.intId}}" aria-expanded="false"
+            aria-controls="collapse{{obj.intId}}">
+            Respuestas
+          </button>
+        </h5>
+      </div>
+      <div id="collapse{{obj.intId}}" class="collapse" aria-labelledby="heading{{obj.intId}}" data-parent="#accordion">
+        <div class="card-body">
+          <div style="font-weight: bold">Ecuacion:     </div><div> {{obj.txtEcuaciones}} </div>
+          <div style="font-weight: bold">Otro:         </div><div> {{obj.txtOtros}}      </div>
+          <div style="font-weight: bold">Video:        </div><div> {{obj.txtVideo}}      </div>
+          <div style="font-weight: bold">RespuestaOK:  </div><div> {{obj.txtCorrecta}}   </div>
+          <div style="font-weight: bold">RespuestaErr: </div><div> {{obj.txtRespuesta1}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div><div> {{obj.txtRespuesta2}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div><div> {{obj.txtRespuesta3}} </div>
+        </div>
+      </div>
+      <div class="col col-xs-12 col-sm-6 col-md-3">
+        <small>Id: {{obj.intId}}</small>
       </div>
     </div>
   </div>
-  <div class="col col-md-12 borde">
+
+  <div class="col col-xs-12 borde">
     <div id="post-stream">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
