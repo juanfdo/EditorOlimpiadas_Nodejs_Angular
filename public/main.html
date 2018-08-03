@@ -2,70 +2,102 @@
 
 
 
-
-  <div class="col col-xs-12 borde">
-    <div class="col">
-      <!-- class="row"> -->
-      <form ng-submit="post()" class="col ">
-        <div class="col ">
-          <div class="form-group">
-            <label>Categoria</label>
-            <select required class="form-control" ng-model="selectedCategoria" ng-options="y.txtNombre for (x, y) in categorias"></select>
-            <label>Olimpiada</label>
-            <select required class="form-control" ng-model="selectedOlimpiada" ng-options="y.txtNombre for (x, y) in olimpiadas"></select>
-          </div>
-
+<!-- INICIO Formulario de ingreso -->
+<div class="col-md-12 borde">
+  <form class="form-horizontal" ng-submit="post()">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-6 text-left">
+          <label>Categoria</label>
+          <select required class="form-control" ng-model="selectedCategoria" ng-options="y.txtNombre for (x, y) in categorias"></select>
+        </div>
+        <div class="col-lg-6 text-left">
+          <label>Olimpiada</label>
+          <select required class="form-control" ng-model="selectedOlimpiada" ng-options="y.txtNombre for (x, y) in olimpiadas"></select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-6 text-left">
           <label>Ingresar pregunta</label>
           <textarea required class="form-control" maxlength="200" rows="3" placeholder="Ingresar la pregunta aquí" ng-model="nuevaPregunta.txtPregunta"></textarea>
+        </div>
+        <div class="col-lg-6 text-left">
           <label>Respuesta Correcta</label>
           <textarea required class="form-control" maxlength="200" rows="3" placeholder="Ingresar la pregunta aquí" ng-model="nuevaPregunta.txtCorrecta"></textarea>
         </div>
-        <div class="col ">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-6 text-left">
           <label>Respuesta Incorrecta</label>
           <textarea required class="form-control" maxlength="200" rows="3" placeholder="Ingresar la pregunta aquí" ng-model="nuevaPregunta.txtRespuesta1"></textarea>
+        </div>
+        <div class="col-lg-6 text-left">
           <label>Respuesta Incorrecta</label>
           <textarea required class="form-control" maxlength="200" rows="3" placeholder="Ingresar la pregunta aquí" ng-model="nuevaPregunta.txtRespuesta2"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-6 text-left">
           <label>Respuesta Incorrecta</label>
           <textarea required class="form-control" maxlength="200" rows="3" placeholder="Ingresar la pregunta aquí" ng-model="nuevaPregunta.txtRespuesta3"></textarea>
-          <label>Id:</label>
-          <textarea disabled class="form-control" maxlength="200" rows="1"> {{nuevaPregunta.intId}}</textarea>
-          <input class="form-control btn submit-btn pull-right" type="submit" value="Guardar" />
-          <div class="form-control btn submit-btn pull-right" value="Limpiar" ng-click="limpiar()">Limpiar</div>
         </div>
-      </form>
+        <div class="col-lg-6 text-left">
+          <label>Id:</label>
+          <textarea disabled class="form-control" maxlength="200" rows="3"> {{nuevaPregunta.intId}}</textarea>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 text-xs-center text-sm-right">
+          <button class="btn btn-danger" type="button" ng-click="limpiar()">Limpiar</button>
+        </div>
+        <div class="col-xs-12 col-sm-6 text-xs-center text-sm-left">
+            <button class="btn btn-success" type="submit">Guardar</button>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
+<!-- FIN Formulario de ingreso -->
 
 
 
 
-
-
+<!-- INICIO Categorias y Olimpiadas -->
   <div class="col col-xs-12 borde ">
-    <div>
-      <div>
+    <div class="row">
+      <div class="col-lg-6">
         <h1>Categorias</h1>
         <div class="row" ng-repeat="obj in categorias | orderBy:'intId':true" ng-class-odd="'odd'" ng-class-even="'even'">
-          <div class="col col-xs-12 col-sm-6 col-md-1">
-            <small>Id: </small>{{obj.intId}}</div>
-          <div class="col col-xs-12 col-sm-6 col-md-11">Nombre: {{obj.txtNombre}}</div>
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            Id: {{obj.intId}}</div>
+          <div class="col-xs-12 col-sm-6 col-md-10">Nombre: {{obj.txtNombre}}</div>
         </div>
       </div>
-      <div>
+      <div class="col-lg-6">
         <h1>Olimpiadas</h1>
         <div class="row" ng-repeat="obj in olimpiadas | orderBy:'intId':true" ng-class-odd="'odd'" ng-class-even="'even'">
-          <div class="col col-xs-12 col-sm-6 col-md-1">
-            <small>Id: </small>{{obj.intId}}</div>
-          <div class="col col-xs-12 col-sm-6 col-md-11">Nombre: {{obj.txtNombre}}</div>
+          <div class="col-xs-12 col-sm-6 col-md-2">
+            Id: {{obj.intId}}
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-10">Nombre: {{obj.txtNombre}}</div>
         </div>
       </div>
     </div>
   </div>
-  <!--
-    --------------------------------------------------------------------------------------
-  -->
+<!-- FIN Categorias y Olimpiadas -->
 
-  <div class="col col-xs-12 borde" id="accordion">
+<!-- INICIO acordeon Pequeño -->
+  <div class="col-xs-12 d-lg-none borde" id="accordion">
     <div class="card" ng-repeat="obj in preguntas | orderBy:'intId'" ng-class-odd="'odd'" ng-class-even="'even'">
       <div class="row">
         <div class="col col-xs-6 col-sm-6 col-md-6">Categoria: {{obj.intIdCategoria}}</div>
@@ -107,6 +139,113 @@
       </div>
     </div>
   </div>
+<!-- FIN acordeon Pequeño -->
+
+
+
+
+
+
+
+
+<!-- INICIO acordeon Grande -->
+<!-- INICIO Muestra pares-->
+<div class="d-none d-lg-block borde" id="accordion_ab">
+  <div class="row">
+    <div class="col-md-6">
+    <div class="card" ng-repeat="obj in preguntas | orderBy:'intId'" ng-hide='$odd' ng-class-odd="'odd'" ng-class-even="'even'">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">Categoria: {{obj.intIdCategoria}}</div>
+        <div class="col-xs-6 col-sm-6 col-md-6">Olimpiada: {{obj.intIdOlimpiada}}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 ">Pregunta: {{obj.txtPregunta}}</div>
+      </div>
+      <div class="card-header" id="heading_a{{obj.intId}}">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse_a{{obj.intId}}" aria-expanded="false"
+            aria-controls="collapse_a{{obj.intId}}">
+            Respuestas
+          </button>
+        </h5>
+      </div>
+      <div id="collapse_a{{obj.intId}}" class="collapse" aria-labelledby="heading_a{{obj.intId}}" data-parent="#accordion_ab">
+        <div class="card-body">
+          <div style="font-weight: bold">Ecuacion: </div>
+          <div> {{obj.txtEcuaciones}} </div>
+          <div style="font-weight: bold">Otro: </div>
+          <div> {{obj.txtOtros}} </div>
+          <div style="font-weight: bold">Video: </div>
+          <div> {{obj.txtVideo}} </div>
+          <div style="font-weight: bold">RespuestaOK: </div>
+          <div> {{obj.txtCorrecta}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta1}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta2}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta3}} </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <small>Id: {{obj.intId}}</small>
+        </div>
+      </div>
+    </div>
+    </div>
+
+<!-- FIN Muestra pares -->
+<!-- INICIA Muestra impares -->
+    <div class="col-md-6">
+    <div class="card" ng-repeat="obj in preguntas | orderBy:'intId'" ng-hide='$even' ng-class-odd="'odd'" ng-class-even="'even'">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6">Categoria: {{obj.intIdCategoria}}</div>
+        <div class="col-xs-6 col-sm-6 col-md-6">Olimpiada: {{obj.intIdOlimpiada}}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 ">Pregunta: {{obj.txtPregunta}}</div>
+      </div>
+      <div class="card-header" id="heading_b{{obj.intId}}">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse_b{{obj.intId}}" aria-expanded="false"
+            aria-controls="collapse_b{{obj.intId}}">
+            Respuestas
+          </button>
+        </h5>
+      </div>
+      <div id="collapse_b{{obj.intId}}" class="collapse" aria-labelledby="heading_b{{obj.intId}}" data-parent="#accordion_ab">
+        <div class="card-body">
+          <div style="font-weight: bold">Ecuacion: </div>
+          <div> {{obj.txtEcuaciones}} </div>
+          <div style="font-weight: bold">Otro: </div>
+          <div> {{obj.txtOtros}} </div>
+          <div style="font-weight: bold">Video: </div>
+          <div> {{obj.txtVideo}} </div>
+          <div style="font-weight: bold">RespuestaOK: </div>
+          <div> {{obj.txtCorrecta}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta1}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta2}} </div>
+          <div style="font-weight: bold">RespuestaErr: </div>
+          <div> {{obj.txtRespuesta3}} </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <small>Id: {{obj.intId}}</small>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- FIN Muestra impares -->
+<!-- FIN acordeon grande -->
+
+
 
   <div class="col col-xs-12 borde">
     <div id="post-stream">
